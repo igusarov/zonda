@@ -13,3 +13,22 @@
   width: 100%;
   table-layout: fixed;
 }
+
+.sortable {
+  position: relative;
+  cursor: pointer;
+}
+
+.sortable::before {
+  position: absolute;
+  right: 5px;
+  font-size: 14px;
+}
+
+.sortable.asc::before {
+  content: '↑';
+}
+
+.sortable.desc::before {
+  content: '↓';
+}

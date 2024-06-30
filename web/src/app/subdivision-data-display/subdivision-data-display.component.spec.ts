@@ -110,7 +110,7 @@ const mockData: Subdivision[] = [
     "subdivisionGeometryIntelligenceBoundaryStatusId": 4,
     "subdivisionGeometryIntelligenceBoundaryStatusCode": "Finalized",
     "subdivisionGeometryIntelligenceBoundaryStatusChangeDate": "2023-06-15T20:34:35.997Z",
-    "nearMapImageDate": "2023-06-17T18:02:42.000Z",
+    "nearMapImageDate": "2023-06-17T18:03:42.000Z",
     "imageBoxId": 59813,
     "mostRecentIPointBatchDate": null,
     "iPoints": null,
@@ -193,5 +193,41 @@ describe('SubdivisionDataDisplayComponent', () => {
     expect(res6).toEqual([mockData[1], mockData[2]]);
     expect(res7).toEqual([mockData[0], mockData[2]]);
     expect(res8).toEqual(mockData);
+  })
+
+  it('should sort by name', () => {
+    //asc
+    component.onClickName();
+    const res1 = component.dataSource.data;
+
+    //desc
+    component.onClickName();
+    const res2 = component.dataSource.data;
+
+    //none
+    component.onClickName();
+    const res3 = component.dataSource.data;
+
+    expect(res1).toEqual([mockData[0], mockData[2], mockData[1]]);
+    expect(res2).toEqual([mockData[1], mockData[2], mockData[0]]);
+    expect(res3).toEqual(mockData);
+  })
+
+  it('should sort by date', () => {
+    //asc
+    component.onClickDate();
+    const res1 = component.dataSource.data;
+
+    //desc
+    component.onClickDate();
+    const res2 = component.dataSource.data;
+
+    //none
+    component.onClickDate();
+    const res3 = component.dataSource.data;
+
+    expect(res1).toEqual([mockData[1], mockData[0], mockData[2]]);
+    expect(res2).toEqual([mockData[2], mockData[0], mockData[1]]);
+    expect(res3).toEqual(mockData);
   })
 });
